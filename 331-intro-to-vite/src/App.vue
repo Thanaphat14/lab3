@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+
+const route = useRoute()
+const router = useRouter()
+
+const pageSize = ref(route.query.pageSize || 2)
+
+watch(pageSize, (newSize) => {
+  router.push({ query: { ...route.query, pageSize: newSize } })
+})
 </script>
 
 <template>
@@ -12,6 +22,14 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink :to="{ name: 'about' }">About</RouterLink> |
           <RouterLink :to="{ name: 'student' }">Student</RouterLink>
         </nav>
+        <div>
+          <label for="pageSize">Page Size:</label>
+          <select id="pageSize" v-model="pageSize">
+            <option :value="2">2</option>
+            <option :value="5">5</option>
+            <option :value="10">10</option>
+          </select>
+        </div>
       </div>
     </header>
     <RouterView />
