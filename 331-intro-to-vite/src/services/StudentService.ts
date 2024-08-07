@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/thanaphat14/Student-list',
+  baseURL: 'https://my-json-server.typicode.com/JJKung07/Compo-Lab2-db-student',
   withCredentials: false,
   headers: {
-    Accept: 'apalication/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json'
   }
 })
 
 export default {
-  getStudents() {
+  getEvents() {
     return apiClient.get('/students')
   }
 }

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import CardStudents from '@/components/CardStudents.vue'
-import Student from '@/types/Student'
 import { ref, onMounted } from 'vue'
-import EventStudent from '@/services/EventStudent'
 
-const students = ref<Student[]>(null)
-
+import Student from '@/type/studentInfo'
+import StudentCard from '@/components/StudentCard.vue'
+import StudentService from '@/services/StudentService'
+const students = ref<Student[]>([])
 onMounted(() => {
-  EventStudent.getStudents()
+  StudentService.getEvents()
     .then((response) => {
       students.value = response.data
     })
@@ -18,15 +17,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Students view</h1>
+  <h1>Student List</h1>
   <!-- new element -->
-  <div class="students">
-    <CardStudents v-for="student in students" :key="student.id" :student="student" />
+  <div class="events">
+    <StudentCard v-for="student in students" :key="student.id" :event="student" />
   </div>
 </template>
 
 <style scoped>
-.students {
+.events {
   display: flex;
   flex-direction: column;
   align-items: center;
