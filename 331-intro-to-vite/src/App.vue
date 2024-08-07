@@ -7,8 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <div class="wrapper">
         <nav>
-          <RouterLink :to="{ name: 'event-list-view' }">Event</RouterLink>|
-          <RouterLink :to="{ name: 'about' }">About</RouterLink>|
+          <RouterLink :to="{ name: 'event-list-view' }">Event</RouterLink> |
+          <RouterLink :to="{ name: 'about' }">About</RouterLink> |
           <RouterLink :to="{ name: 'StudentList' }">Student</RouterLink>
         </nav>
       </div>
@@ -21,7 +21,6 @@ import { RouterLink, RouterView } from 'vue-router'
 #layout {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
@@ -35,10 +34,12 @@ nav a {
   color: #2c3e50;
 }
 
+nav a:first-of-type {
+  border: 0;
+}
 nav a.router-link-exact-active {
   color: #42b983;
 }
-
 h2 {
   font-size: 20px;
 }

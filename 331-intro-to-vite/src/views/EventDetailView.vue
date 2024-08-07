@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue'
-import Event from '@/type/Event'
+import { type Event } from '@/types/Event'
 import EventService from '@/services/EventService'
-const event = ref<Event>(null)
+const event = ref<Event | null>(null)
 const props = defineProps({
   id: {
     type: String,
@@ -10,7 +10,8 @@ const props = defineProps({
   }
 })
 onMounted(() => {
-  EventService.getEvent(props.id)
+  // fetch event (by id) and set local event data
+  EventService.getEvent(parseInt(props.id))
     .then((response) => {
       event.value = response.data
     })
@@ -22,7 +23,7 @@ onMounted(() => {
 <template>
   <div v-if="event">
     <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.lacation }}</p>
+    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
     <p>{{ event.description }}</p>
   </div>
 </template>
