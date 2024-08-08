@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const page = computed(() => props.page)
-const pageSize = computed(() => parseInt(route.query.pageSize as string) || 2)
+const pageSize = computed(() => parseInt(route.query.pageSize as string) || 3)
 
 const hasNextPage = computed(() => {
   const totalPages = Math.ceil(totalEvents.value / pageSize.value)
@@ -27,7 +27,6 @@ const hasNextPage = computed(() => {
 
 onMounted(() => {
   watchEffect(() => {
-    events.value = null
     EventService.getEvents(pageSize.value, page.value)
       .then((response) => {
         events.value = response.data
