@@ -2,27 +2,19 @@ export interface Event {
   id: number
   category: string
   title: string
+  description: string
   location: string
   date: string
   time: string
-  petsAllowed: boolean
+  petAllowed: boolean
   organizer: string
-  studentId: string
-  gpa: number
-  name: string
-  surname: string
 }
-export interface Student {
+
+export interface StudentInfo {
   id: number
-  category: string
-  title: string
-  location: string
-  date: string
-  time: string
-  petsAllowed: boolean
-  organizer: string
   studentId: string
-  gpa: number
   name: string
   surname: string
+  gpa: number
+  image: string
 }
