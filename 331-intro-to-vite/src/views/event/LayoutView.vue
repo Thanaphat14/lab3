@@ -2,6 +2,9 @@
 import { ref, onMounted } from 'vue'
 import { type Event } from '@/types'
 import EventService from '@/services/EventService'
+import { useRouter } from 'vue-router'
+import { resourceLimits } from 'worker_threads';
+
 
 const event = ref<Event | null>(null)
 const props = defineProps({
@@ -10,13 +13,18 @@ const props = defineProps({
     required: true
   }
 })
+const router = useRouter()
+
 onMounted(() => {
   EventService.getEvent(parseInt(props.id))
     .then((response) => {
       event.value = response.data
     })
-    .catch((error) => {
-      console.error('There was an error!', error)
+    .catch(() => {
+      router.push({
+        name: '404-resource-view',
+        params: {resource: 'event'}
+      })
     })
 })
 </script>
