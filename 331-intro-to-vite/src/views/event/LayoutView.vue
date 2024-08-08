@@ -3,8 +3,7 @@ import { ref, onMounted } from 'vue'
 import { type Event } from '@/types'
 import EventService from '@/services/EventService'
 import { useRouter } from 'vue-router'
-import { resourceLimits } from 'worker_threads';
-
+import { resourceLimits } from 'worker_threads'
 
 const event = ref<Event | null>(null)
 const props = defineProps({
@@ -21,15 +20,14 @@ onMounted(() => {
       event.value = response.data
     })
     .catch((error) => {
-      if (error.response && error.response.status === 404){
+      if (error.response && error.response.status === 404) {
         router.push({
-        name: '404-resource-view',
-        params: {resource: 'event'}
-      })
-      }else{
-        router.push({name: 'network-error-view'})
+          name: '404-resource-view',
+          params: { resource: 'event' }
+        })
+      } else {
+        router.push({ name: 'network-error-view' })
       }
-      
     })
 })
 </script>
