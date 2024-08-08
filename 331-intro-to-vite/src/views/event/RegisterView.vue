@@ -11,6 +11,8 @@ const props = defineProps<{
 const { event } = toRefs(props)
 const router = useRouter()
 const register = () => {
+  //If the registration API call successful
+  //Push back to the event details view
   router.push({ name: 'event-detail-view' })
 }
 </script>
